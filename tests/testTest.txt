@@ -1,0 +1,42 @@
+#now that we are confident that define works well, lets check the test command
+
+#very basic test calls, warm up
+define (a x) = (+ x 0) #identity function
+test (a 1) 1 #should be correct
+test (a 2) 2 #should be correct
+test (a 0xFFFFFFF) 0xFFFFFFF #should also be correct
+test (a 3) 5 #incorrect, should say that the answer is 3
+
+#some invalid calls
+test (b 1) 1 #b is not defined
+test (a x) 1 #test calls should only have numeric values, not variables
+test (a 1) x #rhs must be a number
+test (a 1) (a 1) #this can be correct in some implementations but I chose to require numeric RHS too
+test (a 1) = 1 #the correct syntax to call test has no = sign
+
+#composition of function in the test call
+test (a (a (a (a 1)))) 1 #should be correct because a is the identity function
+define (b x y) = (+ x y)
+test (b (a (a 2)) (b 2 3)) 7 #this is correct too
+
+#overflow must be treated as inf
+define (c x) = (^ x 10000)
+test (c 2) 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf #both lead to overflow so they must be treated as inf, however, inf - inf is undefined, so our equality test will fail. The correct output should then be c(2) = inf [INCORRECT: expected inf] - this could possibly be fixed with a special comparison function for inf, but it was not required, so I think its fine this way, specially because these two huge numbers are different. 
+
+#some hex
+test (b 0xFFFF 0xFFFF) 0x1FFFE #correct hex arithmetic
+test (b 1 0xFFFF) 0x10000 #mixing hex and decimal
+test (b 1e+3 0xFFFF) 0x103E7 #mixing hex and scientific
+
+#some tests of precision
+test (a 1) 1.0000000001 #should be incorrect, because our precision is around 14 digits
+test (a 1) 1.00000000000001 #should be correct now
+
+
+#some more weird functions
+define (f1234hdufhd xfjdfjd yyfbdjf) = (+ xfjdfjd yyfbdjf)
+test (f1234hdufhd 1e+3 0xFFF) 5095 #correct computation with weird variable a function names 
+define (ff x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19 x20) = (+ (+  (+  (+  (+  (+  (+  (+  (+ (+ (+  (+  (+  (+  (+  (+  (+ (+ (+ x1 x2) x3) x4) x5) x6) x7) x8) x9) x10) x11) x12) x13) x14) x15) x16) x17) x18) x19) x20)
+test (ff 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20) 210 #correct sum of the first 20 positive ints
+
+#one can think that these test cases are two simple because the functions are not complicated, but the main focus of these tests here is to verify that the test calls is correctly implemented, in terms of syntax and corner cases. Within each test call, the method for evaluating a function is called. We will not test it here in more complicated cases because it will be tested multiple times in complicated functions on the tests cases of the integrator and min/max routines.

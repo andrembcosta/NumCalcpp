@@ -1,0 +1,39 @@
+#most of the test cases here are similar to the ones for numint, but some
+#of them have to be different
+#The first tests will verify the program's ability to reject wrong input
+
+define (f x) = (+ x 0)
+mcint F 10 0 1 #invalid call, undefined function 
+mcint f 10 0 1 1 #invalid call, wrong number of bounds
+mcint f -10 0 1 #invalid call, negative number of points
+mcint f #invalid call, no parameters
+mcint f 1 0 nan #invalid call, nan is not a valid bound
+mcint f nan 0 1 #invalid call, num of points = nan
+mcint f (1 0 1) #invalid call, unexpected characters
+
+#now, we test some valid but uncommon cases
+
+mcint f inf 0 0.5 #valid call, but we set inf to a max value internally to avoid an infinity loop. Should return somehting close to 0.125 - this should be commented out when running on valgring because it takes a long time
+mcint f 0 0 1 #valid call, but no points, so program should return 0
+mcint f 100 2 -2 #lower bound > upper bound, integral is valid but has to be zero since domain is empty
+mcint    f  1000    0   4 #random spacing is valid, program should return something close to 8 
+define (g x y) = (+ x y) #define a 2D function
+mcint g 100 0 5 3 3 #lower bound = upper bound for 2nd argument, so, domain is degenerate and integral is 0
+define (h x) = (^ x 0.5) #define sqrt of x
+mcint h 100 -2 2 #integrating function in an interval where it is not defined (sqrt(negative) ). Should return nan, unless you are really lucky and all random points fall in the x > 0 region
+define (l x) = (logb x 10) #define log_10 x
+mcint l 10000 0 10 #integrating in a domain with singularity, but our random points will probably not be exaclty zero, so, this should evaluate to a positive number. The actual value of this integral is inf, but, the terms that contribute to the singularity are all very small, so it is unlikely that our random points will be very small to show this behaviour
+mcint l 1000 -5 5 #integrating in a domian with nan. Should return nan
+
+#now an integral in 4D
+
+define (s x y z w) = (+ x (+ y (+ z w)))
+mcint s 100000 -2 2 -1 1 -4 4 -5 5 #program should return a number close to 0, since the function and domain are symmetric - this takes a lot of time so, if running on valgrind, comment this out
+
+#now, a not so easy integral that evaluate to pi, that we will use to check the convergence behavior
+define (PI x) = (* 4 (^ (- 1 (^ x 2)) 0.5) )
+#as we refine the width, we should get consecutive better approximations of PI = 3.1415926535...
+mcint PI 100 0 1
+mcint PI 1000 0 1
+mcint PI 10000 0 1
+mcint PI 100000 0 1 #comment this out for valgrind run

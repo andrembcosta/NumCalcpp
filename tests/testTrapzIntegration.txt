@@ -1,0 +1,37 @@
+#The first tests will verify the program's ability to reject wrong input
+
+define (f x) = (+ x 0)
+numint F 0.1 0 1 #invalid call, undefined function 
+numint f 0.1 0 1 1 #invalid call, wrong number of bounds
+numint f -0.1 0 1 #invalid call, negative width
+numint f #invalid call, no parameters
+numint f nan 0 1 #invalid call, width = nan
+numint f 1 0 nan #invalid call, bounds = nan
+numint f (1 0 1) #invalid call, unexpected characters
+
+#now, we test some valid but uncommon cases
+
+numint f 1 0 0.5 #width larger than integration domain, code should adjust width and return 0.125
+numint f inf 0 0.5 #valid call, same situations as the previous one. Should return 0.125
+numint f 1 2 -2 #lower bound > upper bound, integral is valid but has to be zero since domain is empty
+numint    f  1    0   4 #random spacing is valid, program should return 8 
+define (g x y) = (+ x y) #define a 2D function
+numint g 1 0 5 3 3 #lower bound = upper bound for 2nd argument, so, domain is degenerate and integral is 0
+define (h x) = (^ x 0.5) #define sqrt of x
+numint h 1 -2 2 #integrating function in an interval where it is not defined (sqrt(negative) ). Should return nan
+define (l x) = (logb x 10) #define log_10 x
+numint l 1 0 10 #integrating in a domain with singularity. Should return -inf
+numint l 1 -5 5 #integrating in a domian with nan. Should return nan
+
+#now, some integrals in larger dimensions with width that doesn't fit the domain perfectly (this is the most complicated general case)
+
+define (s x y z w) = (+ x (+ y (+ z w)))
+numint s 0.3 -2 2 -1 1 -4 4 -5 5 #program should return a number very close to 0, since the function and domain are symmetric - comment this out when running on valgrind because it takes a lot of time
+
+#now, a not so easy integral that evaluate to pi, that we will use to check the convergence behavior
+define (PI x) = (* 4 (^ (- 1 (^ x 2)) 0.5) )
+#as we refine the width, we should get consecutive better approximations of PI = 3.1415926535...
+numint PI 0.1 0 1
+numint PI 0.01 0 1
+numint PI 0.001 0 1
+numint PI 0.0001 0 1 

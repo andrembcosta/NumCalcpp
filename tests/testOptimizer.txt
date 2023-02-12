@@ -1,0 +1,58 @@
+#We start by testing invalid calls
+
+#in this part, I tested only the max command because the parser is the same for max and min
+#and all these invalid calls should be handled by the parser, so if we pass all the cases with
+#max, we are fine with min too
+
+define (f x) = (+ x 0)
+max F 0.1 0.01 3 1000 #invalid call, undefined function 
+max f 0.1 0 1 #invalid call, wrong number of params
+max f -0.1 0.01 2 100 #invalid call, negative gamma
+max f 0.1 -0.01 2 100 #invalid call, negative tolerance
+max f 0.1 0.01 2 -100 #invalid call, negative maxIter
+max f #invalid call, no parameters
+max f 1 1 nan 10 #invalid call, nan is not a valid parameter
+
+#testing a function that has constant gradient but diverges
+define (ff x y z) = (+ x (+ y z)) 
+max ff 0.1 0.0001 3 3 3 1000 #code should not find a maximum as it doesnt exist. Instead, it should
+#reach maxIter and stop
+
+define (g x y z) = (+ (^ x 2) (+ (^ y 2) (^ z 2) ) )
+max g 0.1 0.0001 1 1 1 1000 #code should not find a max as it doesnt exist. In this case, the
+#gradient increases as we move away from the origin, so the program should probably indicate that we
+#are diverging
+
+define (h x y) = (+ (^ x 2) (- (^ y 2) (+ (* 4 x) 1) ) )
+min h 0.1 0.0001 3 3 1000 #this is the test case suggested in the instructions. Program should find the minimum (2,0) and print it (or print a numerically equivalent answer).
+
+define (u x y) = (+ 0 1)
+min u 0.1 0.001 0 0 1000 #constant function, program should realize that the initial point is a minimum and print it ( (0,0) )
+
+#repeat the last for tests with all the functions multiplied by -1 and min changed to max and vice versa
+
+#testing a function that has constant gradient but diverges
+define (mf x y z) = (- 0 (ff x y z)) 
+min mf 0.1 0.0001 3 3 3 1000 #code should not find a minimum as it doesnt exist. Instead, it should
+#reach maxIter and stop
+
+define (mg x y z) =(* -1 (+ (^ x 2) (+ (^ y 2) (^ z 2) ) ) ) 
+min mg 0.1 0.0001 1 1 1 1000 #code should not find a min as it doesnt exist. In this case, the
+#gradient increases as we move away from the origin, so the program should probably indicate that we
+#are diverging
+
+define (mh x y) = (* -1 (h x y) )
+max mh 0.1 0.0001 3 3 1000 #this is the test case suggested in the instructions (* -1). Program should find the maximum (2,0) and print it (or print a numerically equivalent answer).
+
+define (mu x y) = (- 0 1)
+min u 0.1 0.001 0 0 1000 #constant function, program should realize that the initial point is a minimum and print it ( (0,0) )
+
+#1D test
+define (G x) = (* x x)
+min G 0.1 0.001 5 1000 #this should find the minimum of G(x) = x^2, which is 0 (or something really close)
+
+#testing a nonconst functions at its minimum. The program should stop at the first iteration
+#and print (0,0) or something very close (as we have numerical approximations of the derivatives)
+
+define (H x y) = (+ (^ x 2) (^ y 2))
+min H 0.1 0.001 0 0 1000 

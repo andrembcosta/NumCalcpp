@@ -1,0 +1,80 @@
+I wrote 7 test files to verify all the functionalities of the program
+Each test file verifies every possible behaviour (that I could think of) of each of the commands
+that the program is supposed to handle.
+
+These test files are:
+
+(1) testDefine.txt
+
+To check it, just run ./numerics < tests/testDefine.txt
+
+It contains all the test cases I could think of to verify the correct behaviour of the program
+when defining new functions. The file testDefine.txt contains several comments that explain
+what the expected behaviour of the program is for each test made.
+
+(2) testTest.txt
+
+To check it, just run ./numerics < tests/testTest.txt
+
+It contains all the test cases I could think of to verify the correct behaviour of the program
+when testing function evaluations. The file testTest.txt contains several comments that explain
+what the expected behaviour of the program is for each test made. These tests focus mainly on user
+defined functions. The tests for the pre-defined math functions are on separate files.
+
+(3) testBasicMath.txt
+
+To check it, just run ./numerics < tests/testBasicMath.txt
+
+It contains all the test cases I could think of to verify the correct behaviour of the program
+when evaluating the pre-defined basic math functions. The file testBasicMath.txt contains
+several comments that explain what the expected behaviour of the program is for each test made.
+The operations +, -, *, /, %, ^ and log are tested here. The other operations are tested in
+testBasicMath2.txt.
+
+(4) testBasicMath2.txt
+
+To check it, just run ./numerics < tests/testBasicMath2.txt
+
+This is the same as the past test file, excepts that it tests the operators select, floor,
+ceil and round.
+
+(5) testTrapzIntegration.txt
+
+To check it, just run ./numerics < tests/testTrapzIntegration.txt
+
+This one tests the trapezoidal integrations. It contains all test cases I could think of, including
+some tricky ones. If one wants to run this one on valgrind, I would recommend opening the test file
+and commenting out the lines I say that should be commented out for valgrind runs. Otherwise
+runtime can be quite long. Again, an explanation and expected behaviour of each test can be
+found in the comments of the testTrapzIntegration.txt file.
+
+(6) testMCIntegration.txt
+
+To check it, just run ./numerics < tests/testMCIntegration.txt
+
+This one tests the Monte Carlo integrations. It contains all test cases I could think of, including
+some tricky ones. If one wants to run this one on valgrind, I would recommend opening the test file
+and commenting out the lines I say that should be commented out for valgrind runs. Otherwise
+runtime can be quite long. Again, an explanation and expected behaviour of each test can be
+found in the comments of the testMCIntegration.txt file.
+I would like to also add that the Monte Carlo integration method does not converge fast to the
+correct integral, so, you should see large errors, specially because I did not use too many random
+points in the test file, otherwise the runtime would be too long.
+
+(7) testOptimzer.txt
+
+To check it, just run ./numerics < tests/testOptimizer.txt
+
+Finally, this one tests the gradient ascent/descent optimization method. I tried to test it in
+all possible behaviours, including functions where a maximum or minimum doesn't exist. For more
+details, again, check the comments of the file, which describe each test and its expected behaviour
+
+I was able to run this one in valgrind in less than 2 minutes, so I think you don't need to
+comment anything out.
+
+
+Hope you have fun grading this!
+
+
+
+

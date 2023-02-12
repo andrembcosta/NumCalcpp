@@ -1,0 +1,21 @@
+#testing the select, floor, ceil and round functions
+#we will test their behaviors with positive, negative,
+#integer and fractional numbers
+define (s x y z) = (select x y z)
+test(s 0 1 2)   1 #this is correct 0 is not negative, so, choose 1
+test(s 1 1 2)   1 #this is correct again since 1 is positive
+test(s -1 1 2)   1 #incorrect, as -1 is negative
+define (fl x) = (floor x)
+define (c x) = (ceil x)
+define (r x) = (round x)
+test(fl 10)  10 #correct, as 10 is an integer
+test(fl 9.5)  9 #correct
+test(fl -1)   -1 #correct, -1 is an integer
+test(fl -1.4) -1 #wrong, since floor(-1.4) = -2
+test(c 2.5) 4 #incorrect, since ceil(2.5) = 3
+test(c -2.3)  -2 #correct
+test(r 9.9)  10 #correct
+test(r 9.51)  10 #correct
+test(r 9.49) 10 #wrong, since 9.49 is closer to 9 than 10
+test(r -2.52)   -3 #correct
+test(r -2.1)   -2 #correct
