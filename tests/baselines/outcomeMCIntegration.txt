@@ -1,0 +1,35 @@
+defined f(x)
+This function has not been defined yet. Cannot perform integration.
+main: Cannot perform integration. Invalid commands 
+This is not a valid call to Integrator. Verify the number of args
+main: Cannot perform integration. Invalid commands 
+The number of points for Monte Carlo Integration must be >= 0.
+main: Cannot perform integration. Invalid commands 
+This is not a valid call to Integrator. Verify the number of args
+main: Cannot perform integration. Invalid commands 
+This call to Integrator could not be parsed, verify your syntax
+main: Cannot perform integration. Invalid commands 
+This call to Integrator could not be parsed, verify your syntax
+main: Cannot perform integration. Invalid commands 
+expected a number, but found (1
+This call to Integrator could not be parsed, verify your syntax
+main: Cannot perform integration. Invalid commands 
+Warning: number of points is too large. To avoid very long or infinity loops, we reduce the number of points to 10 Million
+integral is 0.125008
+integral is 0
+integral is 0
+integral is 7.98737
+defined g(x y)
+integral is 0
+defined h(x)
+integral is -nan
+defined l(x)
+integral is 5.60116
+integral is -nan
+defined s(x y z w)
+integral is 0.660145
+defined PI(x)
+integral is 3.02728
+integral is 3.14354
+integral is 3.13791
+integral is 3.14408

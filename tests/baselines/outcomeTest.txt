@@ -1,0 +1,27 @@
+defined a(x)
+a(1) = 1 [correct]
+a(2) = 2 [correct]
+a(2.68435e+08) = 2.68435e+08 [correct]
+a(3) = 5 [INCORRECT: expected 3]
+Invalid operation: b
+Expected a number, but found x
+Expected a number, but found x
+invalid string for conversion
+Call to test with empty RHS.
+invalid string for conversion
+Unexpected character after expression given: =
+Cannot evaluate it
+a(a(a(a(1)))) = 1 [correct]
+defined b(x y)
+b(a(a(2)) b(2 3)) = 7 [correct]
+defined c(x)
+c(2) = inf [INCORRECT: expected inf]
+b(65535 65535) = 131070 [correct]
+b(1 65535) = 65536 [correct]
+b(1000 65535) = 66535 [correct]
+a(1) = 1 [INCORRECT: expected 1]
+a(1) = 1 [correct]
+defined f1234hdufhd(xfjdfjd yyfbdjf)
+f1234hdufhd(1000 4095) = 5095 [correct]
+defined ff(x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19 x20)
+ff(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20) = 210 [correct]

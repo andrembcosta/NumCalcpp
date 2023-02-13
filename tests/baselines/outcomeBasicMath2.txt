@@ -1,0 +1,18 @@
+defined s(x y z)
+s(0 1 2) = 1 [correct]
+s(1 1 2) = 1 [correct]
+s(-1 1 2) = 1 [INCORRECT: expected 2]
+defined fl(x)
+defined c(x)
+defined r(x)
+fl(10) = 10 [correct]
+fl(9.5) = 9 [correct]
+fl(-1) = -1 [correct]
+fl(-1.4) = -1 [INCORRECT: expected -2]
+c(2.5) = 4 [INCORRECT: expected 3]
+c(-2.3) = -2 [correct]
+r(9.9) = 10 [correct]
+r(9.51) = 10 [correct]
+r(9.49) = 10 [INCORRECT: expected 9]
+r(-2.52) = -3 [correct]
+r(-2.1) = -2 [correct]

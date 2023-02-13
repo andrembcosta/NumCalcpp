@@ -1,0 +1,34 @@
+defined f(x)
+This function has not been defined yet. Cannot perform integration.
+main: Cannot perform integration. Invalid commands 
+This is not a valid call to Integrator. Verify the number of args
+main: Cannot perform integration. Invalid commands 
+The width must be a positive number
+main: Cannot perform integration. Invalid commands 
+This is not a valid call to Integrator. Verify the number of args
+main: Cannot perform integration. Invalid commands 
+This call to Integrator could not be parsed, verify your syntax
+main: Cannot perform integration. Invalid commands 
+This call to Integrator could not be parsed, verify your syntax
+main: Cannot perform integration. Invalid commands 
+expected a number, but found (1
+This call to Integrator could not be parsed, verify your syntax
+main: Cannot perform integration. Invalid commands 
+integral is 0.125
+integral is 0.125
+integral is 0
+integral is 8
+defined g(x y)
+integral is 0
+defined h(x)
+integral is -nan
+defined l(x)
+integral is -inf
+integral is -nan
+defined s(x y z w)
+integral is 8.84226e-11
+defined PI(x)
+integral is 3.10452
+integral is 3.14042
+integral is 3.14156
+integral is 3.14159

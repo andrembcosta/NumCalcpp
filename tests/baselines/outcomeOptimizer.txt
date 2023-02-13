@@ -1,0 +1,39 @@
+defined f(x)
+This function has not been defined yet. Cannot optimize it.
+main: Cannot perform optimization. Invalid commands 
+the tolerance must be positive
+Cannot perform optimization
+main: Cannot perform optimization. Invalid commands 
+parameter gamma must be positive
+Cannot perform optimization
+main: Cannot perform optimization. Invalid commands 
+the tolerance must be positive
+Cannot perform optimization
+main: Cannot perform optimization. Invalid commands 
+the maximum number of steps must be positive
+Cannot perform optimization
+main: Cannot perform optimization. Invalid commands 
+This is not a valid call to Optimizer. Verify the number of args
+main: Cannot perform optimization. Invalid commands 
+Cannot perform optimization
+main: Cannot perform optimization. Invalid commands 
+defined ff(x y z)
+Reached maxSteps. The gradient method for optimization did not converge. maxSepts = 1000
+defined g(x y z)
+The residual is very large. The method is probably diverging.
+defined h(x y)
+(2.0001, 0.000314015)
+defined u(x y)
+(0, 0)
+defined mf(x y z)
+Reached maxSteps. The gradient method for optimization did not converge. maxSepts = 1000
+defined mg(x y z)
+The residual is very large. The method is probably diverging.
+defined mh(x y)
+(2.0001, 0.000314015)
+defined mu(x y)
+(0, 0)
+defined G(x)
+(0.00395641)
+defined H(x y)
+(-1e-06, -1e-06)
