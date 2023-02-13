@@ -1,6 +1,6 @@
 # NumCalc++
 
-This is a test README file for this project.
+Numerical calculus in C++.
 
 ## Table of Contents
 
