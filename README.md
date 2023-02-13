@@ -1,6 +1,6 @@
 # NumCalc++
 
-This is a test README file.
+This is a test README file for this project.
 
 ## Table of Contents
 
