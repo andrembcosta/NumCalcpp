@@ -26,7 +26,7 @@ This is a trapezoidal integration gif.
 
 This is a monte-carlo integration gif.
 
-![Monte-Carlo Image](img/montCarloIntegration.gif)
+![Monte-Carlo Image](img/monteCarloIntegration.gif)
 
 # Gradient Ascent/Descent
 
