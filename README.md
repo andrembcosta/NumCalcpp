@@ -16,7 +16,7 @@ Numerical calculus in C++.
 # Installation
 <sup>[(Back to top)](#table-of-contents)</sup>
 
-It just requires a g++ compiler, compatible with the c++98 standard. If you have one installed, just run the make command in the root directory. The executable "numerics" should be created and ready to execute.
+It just requires a g++ compiler, compatible with the c++98 standard. If you have one installed, just run the make command in the root directory. The executable "numerics" should be created and be ready for usage.
 
 You can test the installation by running the test suite. Just execute the bash script test.sh.
 
@@ -37,6 +37,8 @@ Passing txt files
 
 ## Defining Functions
 <sup>[(Back to top)](#table-of-contents)</sup>
+
+Within an interactive launch or through txt files, the command to create (define) a function has the following form define (FUNCTION_NAME ARG1 ARG2 ARG3 ... ARGN) = EXPRESSION
 
 Add a gif exaplaining how to define a function
 
